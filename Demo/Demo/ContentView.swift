@@ -25,70 +25,66 @@ struct ContentView: View {
                 
                 Section {
                     if let user = viewModel.loggedInUser {
-                        Text(user)
-                        Button("Logout") {
+                        LabeledContent("User", value: user)
+                        Button("Logout", role: .destructive) {
                             viewModel.logout()
                         }
                     } else {
-                        Button("Login") {
-                            Task {
-                                await viewModel.login()
-                            }
+                        TaskButton("Login") {
+                            await viewModel.login()
                         }
                     }
                 } header: {
-                    Text("Regular")
+                    Text("ObservableObject")
+                        .headerProminence(.increased)
                 }
                 
                 Section {
                     if let user = customViewModel.loggedInUser {
-                        Text(user)
-                        Button("Logout") {
+                        LabeledContent("User", value: user)
+                        Button("Logout", role: .destructive) {
                             customViewModel.logout()
                         }
                     } else {
-                        Button("Login") {
-                            Task {
-                                await customViewModel.login()
-                            }
+                        TaskButton("Login") {
+                            await customViewModel.login()
                         }
                     }
                 } header: {
-                    Text("Custom")
+                    Text("ObservableObject (custom init)")
+                        .headerProminence(.increased)
                 }
                 
                 Section {
                     if let user = model.loggedInUser {
-                        Text(user)
-                        Button("Logout") {
+                        LabeledContent("User", value: user)
+                        Button("Logout", role: .destructive) {
                             model.logout()
                         }
                     } else {
-                        Button("Login") {
-                            Task {
-                                await model.login()
-                            }
+                        TaskButton("Login") {
+                            await model.login()
                         }
                     }
                 } header: {
                     Text("Observation")
+                        .headerProminence(.increased)
                 }
                 
                 Section {
                     if let user = loggedInUser {
-                        Text(user)
-                        Button("Logout") {
+                        LabeledContent("User", value: user)
+                        Button("Logout", role: .destructive) {
                             logout()
                         }
                     } else {
-                        Button("Login") {
-                            Task {
-                                await login()
-                            }
+                        TaskButton("Login") {
+                            await login()
                         }
                     }
                 } header: {
-                    Text("SwiftUI")
+                    Text("View")
+                        .headerProminence(.increased)
                 }
             }
             .navigationTitle("Demo")
