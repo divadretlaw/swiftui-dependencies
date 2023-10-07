@@ -26,6 +26,7 @@ public enum DependencyContext: Equatable, Sendable, CustomStringConvertible {
     /// Dependencies accessed from this context will use ``DependencyKey/testingValue`` as the default value.
     case testing
     
+    /// Returns the current ``DependencyContext``
     static var current: DependencyContext {
         if ProcessInfo.processInfo.isPreview {
             return .preview
@@ -60,9 +61,7 @@ extension ProcessInfo {
 }
 
 private struct DependencyContextKey: EnvironmentKey {
-    static var defaultValue: DependencyContext {
-        .current
-    }
+    static var defaultValue: DependencyContext { .current }
 }
 
 public extension EnvironmentValues {

@@ -15,13 +15,13 @@ let package = Package(
         .library(
             name: "Dependencies",
             targets: ["Dependencies"]
-        )
+        ),
     ],
     targets: [
         .target(name: "Dependencies"),
         .testTarget(
             name: "DependenciesTests",
             dependencies: ["Dependencies"]
-        )
+        ),
     ]
 )
