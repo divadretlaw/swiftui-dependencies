@@ -3,7 +3,7 @@ import Observation
 import Dependencies
 
 @Observable
-class Model: ObservableDependency {
+final class Model: ObservableDependency {
     var loggedInUser: String?
     private let api: API
     

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		63092C7F2AD07B8A0044EB5E /* ObserveableObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63092C7E2AD07B8A0044EB5E /* ObserveableObjectView.swift */; };
+		63092C812AD07BF20044EB5E /* CustomObservableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63092C802AD07BF20044EB5E /* CustomObservableObject.swift */; };
+		63092C832AD07C5C0044EB5E /* ObservationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63092C822AD07C5C0044EB5E /* ObservationView.swift */; };
+		63092C852AD07CD90044EB5E /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63092C842AD07CD90044EB5E /* SwiftUIView.swift */; };
 		63124AD52AC82C36003EF777 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63124AD42AC82C36003EF777 /* ViewModel.swift */; };
 		63124AD72AC82C50003EF777 /* CustomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63124AD62AC82C50003EF777 /* CustomViewModel.swift */; };
 		63124AD92AC82F13003EF777 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63124AD82AC82F13003EF777 /* Model.swift */; };
@@ -20,6 +24,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		63092C7E2AD07B8A0044EB5E /* ObserveableObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserveableObjectView.swift; sourceTree = "<group>"; };
+		63092C802AD07BF20044EB5E /* CustomObservableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomObservableObject.swift; sourceTree = "<group>"; };
+		63092C822AD07C5C0044EB5E /* ObservationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationView.swift; sourceTree = "<group>"; };
+		63092C842AD07CD90044EB5E /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		63124AD42AC82C36003EF777 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		63124AD62AC82C50003EF777 /* CustomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewModel.swift; sourceTree = "<group>"; };
 		63124AD82AC82F13003EF777 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -46,6 +54,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		63092C7D2AD07B680044EB5E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				63092C7E2AD07B8A0044EB5E /* ObserveableObjectView.swift */,
+				63092C802AD07BF20044EB5E /* CustomObservableObject.swift */,
+				63092C822AD07C5C0044EB5E /* ObservationView.swift */,
+				63092C842AD07CD90044EB5E /* SwiftUIView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		63124AD32AC82C1E003EF777 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +116,7 @@
 				639841692AC7095300D94E99 /* ContentView.swift */,
 				634132502AC996F800A868F6 /* Helper */,
 				63124ADA2AC82F61003EF777 /* Dependencies */,
+				63092C7D2AD07B680044EB5E /* Views */,
 				63124AD32AC82C1E003EF777 /* Models */,
 				6398416B2AC7095400D94E99 /* Assets.xcassets */,
 				6398416D2AC7095400D94E99 /* Demo.entitlements */,
@@ -188,11 +208,15 @@
 			files = (
 				63124AD92AC82F13003EF777 /* Model.swift in Sources */,
 				6398416A2AC7095300D94E99 /* ContentView.swift in Sources */,
+				63092C852AD07CD90044EB5E /* SwiftUIView.swift in Sources */,
+				63092C812AD07BF20044EB5E /* CustomObservableObject.swift in Sources */,
 				634132522AC9970000A868F6 /* TaskButton.swift in Sources */,
 				63124ADF2AC83E92003EF777 /* APIDependency.swift in Sources */,
+				63092C7F2AD07B8A0044EB5E /* ObserveableObjectView.swift in Sources */,
 				63124AD72AC82C50003EF777 /* CustomViewModel.swift in Sources */,
 				63124AD52AC82C36003EF777 /* ViewModel.swift in Sources */,
 				63124AE12AC83FB3003EF777 /* LoginResponse.swift in Sources */,
+				63092C832AD07C5C0044EB5E /* ObservationView.swift in Sources */,
 				639841682AC7095300D94E99 /* DemoApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
