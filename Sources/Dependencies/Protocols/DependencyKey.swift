@@ -62,6 +62,8 @@ public protocol DependencyKey {
 // MARK: - Default implementations
 
 public extension DependencyKey {
+    /// Default implementation: Will use ``DependencyKey/testingValue``
     static var previewValue: Value { testingValue }
+    /// Default implementation: Will use ``DependencyKey/defaultValue``
     static var testingValue: Value { defaultValue }
 }
