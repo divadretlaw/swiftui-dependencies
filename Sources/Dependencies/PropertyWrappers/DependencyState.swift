@@ -26,7 +26,7 @@ public struct DependencyState<Value>: DynamicProperty where Value: ObservableDep
     }
     
     @Observable
-    class Coordinator {
+    final class Coordinator {
         private(set) var wrappedValue: Value?
         
         func update(build: () -> Value) {
