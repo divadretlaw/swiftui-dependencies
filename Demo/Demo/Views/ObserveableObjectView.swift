@@ -1,10 +1,3 @@
-//
-//  ObserveableObjectView.swift
-//  Demo
-//
-//  Created by David Walter on 06.10.23.
-//
-
 import SwiftUI
 import Dependencies
 

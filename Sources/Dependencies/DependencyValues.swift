@@ -53,11 +53,13 @@ public struct DependencyValues: CustomStringConvertible {
     /// You can also provide a dedicated view modifier as a convenience for
     /// setting the value:
     ///
-    ///     extension View {
-    ///         func myCustomValue(_ myCustomValue: String) -> some View {
-    ///             dependency(\.myCustomValue, myCustomValue)
-    ///         }
+    /// ```swift
+    /// extension View {
+    ///     func myCustomValue(_ myCustomValue: String) -> some View {
+    ///         dependency(\.myCustomValue, myCustomValue)
     ///     }
+    /// }
+    /// ```
     public subscript<K>(key: K.Type) -> K.Value where K: DependencyKey {
         get { self[key, for: DependencyContext.current] }
         set { self[key, for: DependencyContext.current] = newValue }

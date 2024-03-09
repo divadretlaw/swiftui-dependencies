@@ -1,10 +1,3 @@
-//
-//  TaskButton.swift
-//  Demo
-//
-//  Created by David Walter on 01.10.23.
-//
-
 import SwiftUI
 
 struct TaskButton<Label>: View where Label: View {

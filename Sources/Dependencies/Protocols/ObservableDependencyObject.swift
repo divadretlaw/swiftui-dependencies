@@ -20,7 +20,7 @@ public extension ObservableDependencyObject {
         let message = """
         '\(#function)' has not been implemented for '\(name)'.
         
-        If this was intentional, please initialize '\(name)' like this:
+        If this was intentional, please initialize your view model like this:
         _viewModel = DependencyObject { dependencies in
             \(name).init
         }

@@ -1,19 +1,17 @@
-//
-//  SwiftUIView.swift
-//  Demo
-//
-//  Created by David Walter on 06.10.23.
-//
-
 import SwiftUI
 import Dependencies
 
+@MainActor
 struct SwiftUIView: View {
+    @Environment(\.dependencyContext) private var context
+    
     @State private var loggedInUser: String?
     @Dependency(\.api) private var api: API
     
     var body: some View {
         List {
+            LabeledContent("Context", value: context.description)
+            
             Section {
                 if let user = loggedInUser {
                     LabeledContent("User", value: user)

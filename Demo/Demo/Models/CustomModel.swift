@@ -1,12 +1,13 @@
 import Foundation
 import Dependencies
 
-@MainActor final class ViewModel: ObservableDependencyObject {
-    @Published var loggedInUser: String?
-    
+@Observable
+@MainActor final class CustomModel: ObservableDependency {
+    var loggedInUser: String?
     private let api: API
     
-    nonisolated required init(dependencies: DependencyValues) {
+    init(value: String, dependencies: DependencyValues) {
+        self.loggedInUser = "Test"
         self.api = dependencies.api
     }
     

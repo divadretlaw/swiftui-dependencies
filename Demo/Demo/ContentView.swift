@@ -29,6 +29,12 @@ struct ContentView: View {
                     }
                     
                     NavigationLink {
+                        CustomObservationView()
+                    } label: {
+                        Text("Observation (custom init)")
+                    }
+                    
+                    NavigationLink {
                         SwiftUIView()
                     } label: {
                         Text("SwiftUI")

@@ -16,13 +16,21 @@ public struct DependencyState<Value>: DynamicProperty where Value: ObservableDep
     @Environment(\.dependencies) private var dependencies
     
     @State private var coordinator = Coordinator()
+    private let build: ((_ dependencies: DependencyValues) -> Value)?
     
     /// Creates an observed object without an initial value.
     ///
     /// Don't call this initializer directly. Instead, declare
     /// an input to a view with the `@DependencyObject` attribute.
     public init() {
-        // Create initially empty object
+        self.build = nil
+    }
+    
+    /// Creates a new ``DependencyState`` with a closure that initializes an observed object from dependency values.
+    ///
+    /// - Parameter build: Callback that initializes the observed object
+    public init(_ build: @escaping (_ dependencies: DependencyValues) -> Value) {
+        self.build = build
     }
     
     @Observable
@@ -72,8 +80,14 @@ public struct DependencyState<Value>: DynamicProperty where Value: ObservableDep
     // MARK: - DynamicProperty
     
     public func update() {
-        coordinator.update {
-            Value(dependencies: dependencies)
+        if let build = self.build {
+            coordinator.update {
+                build(dependencies)
+            }
+        } else {
+            coordinator.update {
+                Value(dependencies: dependencies)
+            }
         }
     }
 }

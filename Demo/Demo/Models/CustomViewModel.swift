@@ -1,7 +1,7 @@
 import Foundation
 import Dependencies
 
-final class CustomViewModel: ObservableDependencyObject {
+@MainActor final class CustomViewModel: ObservableDependencyObject {
     @Published var loggedInUser: String?
     
     private let api: API

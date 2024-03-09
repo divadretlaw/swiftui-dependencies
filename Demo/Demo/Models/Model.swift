@@ -3,11 +3,11 @@ import Observation
 import Dependencies
 
 @Observable
-final class Model: ObservableDependency {
+@MainActor final class Model: ObservableDependency {
     var loggedInUser: String?
     private let api: API
     
-    required init(dependencies: DependencyValues) {
+    nonisolated required init(dependencies: DependencyValues) {
         self.api = dependencies.api
     }
     

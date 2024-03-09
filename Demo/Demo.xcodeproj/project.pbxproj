@@ -17,6 +17,8 @@
 		63124ADF2AC83E92003EF777 /* APIDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63124ADE2AC83E92003EF777 /* APIDependency.swift */; };
 		63124AE12AC83FB3003EF777 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63124AE02AC83FB3003EF777 /* LoginResponse.swift */; };
 		634132522AC9970000A868F6 /* TaskButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634132512AC9970000A868F6 /* TaskButton.swift */; };
+		637BCAA82B9C969C00C92883 /* CustomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637BCAA72B9C969C00C92883 /* CustomModel.swift */; };
+		637BCAAA2B9C96F200C92883 /* CustomObservationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637BCAA92B9C96F200C92883 /* CustomObservationView.swift */; };
 		639841682AC7095300D94E99 /* DemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639841672AC7095300D94E99 /* DemoApp.swift */; };
 		6398416A2AC7095300D94E99 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639841692AC7095300D94E99 /* ContentView.swift */; };
 		6398416C2AC7095400D94E99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6398416B2AC7095400D94E99 /* Assets.xcassets */; };
@@ -35,6 +37,8 @@
 		63124ADE2AC83E92003EF777 /* APIDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDependency.swift; sourceTree = "<group>"; };
 		63124AE02AC83FB3003EF777 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		634132512AC9970000A868F6 /* TaskButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskButton.swift; sourceTree = "<group>"; };
+		637BCAA72B9C969C00C92883 /* CustomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModel.swift; sourceTree = "<group>"; };
+		637BCAA92B9C96F200C92883 /* CustomObservationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomObservationView.swift; sourceTree = "<group>"; };
 		639841642AC7095300D94E99 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		639841672AC7095300D94E99 /* DemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoApp.swift; sourceTree = "<group>"; };
 		639841692AC7095300D94E99 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -60,6 +64,7 @@
 				63092C7E2AD07B8A0044EB5E /* ObserveableObjectView.swift */,
 				63092C802AD07BF20044EB5E /* CustomObservableObject.swift */,
 				63092C822AD07C5C0044EB5E /* ObservationView.swift */,
+				637BCAA92B9C96F200C92883 /* CustomObservationView.swift */,
 				63092C842AD07CD90044EB5E /* SwiftUIView.swift */,
 			);
 			path = Views;
@@ -72,6 +77,7 @@
 				63124AD42AC82C36003EF777 /* ViewModel.swift */,
 				63124AD62AC82C50003EF777 /* CustomViewModel.swift */,
 				63124AD82AC82F13003EF777 /* Model.swift */,
+				637BCAA72B9C969C00C92883 /* CustomModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -163,7 +169,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1530;
 				TargetAttributes = {
 					639841632AC7095300D94E99 = {
 						CreatedOnToolsVersion = 15.0;
@@ -214,10 +220,12 @@
 				63124ADF2AC83E92003EF777 /* APIDependency.swift in Sources */,
 				63092C7F2AD07B8A0044EB5E /* ObserveableObjectView.swift in Sources */,
 				63124AD72AC82C50003EF777 /* CustomViewModel.swift in Sources */,
+				637BCAAA2B9C96F200C92883 /* CustomObservationView.swift in Sources */,
 				63124AD52AC82C36003EF777 /* ViewModel.swift in Sources */,
 				63124AE12AC83FB3003EF777 /* LoginResponse.swift in Sources */,
 				63092C832AD07C5C0044EB5E /* ObservationView.swift in Sources */,
 				639841682AC7095300D94E99 /* DemoApp.swift in Sources */,
+				637BCAA82B9C969C00C92883 /* CustomModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +266,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -282,6 +291,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_STRICT_CONCURRENCY = complete;
 			};
 			name = Debug;
 		};
@@ -319,6 +329,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -335,6 +346,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_STRICT_CONCURRENCY = complete;
 			};
 			name = Release;
 		};
@@ -346,6 +358,7 @@
 				CODE_SIGN_ENTITLEMENTS = Demo/Demo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -368,10 +381,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "at.davidwalter.swiftui-dependencies.Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,7";
 			};
 			name = Debug;
 		};
@@ -383,6 +398,7 @@
 				CODE_SIGN_ENTITLEMENTS = Demo/Demo.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
@@ -405,10 +421,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "at.davidwalter.swiftui-dependencies.Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,7";
 			};
 			name = Release;
 		};

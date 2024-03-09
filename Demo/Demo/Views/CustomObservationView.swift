@@ -1,14 +1,14 @@
 import SwiftUI
 import Dependencies
 
-struct CustomObserveableObjectView: View {
+struct CustomObservationView: View {
     @Environment(\.dependencyContext) private var context
     
-    @DependencyObject private var viewModel: CustomViewModel
+    @DependencyState private var model: CustomModel
     
     init() {
-        _viewModel = DependencyObject { dependencies in
-            CustomViewModel(value: "Test", dependencies: dependencies)
+        _model = DependencyState { dependencies in
+            CustomModel(value: "Test", dependencies: dependencies)
         }
     }
     
@@ -17,25 +17,25 @@ struct CustomObserveableObjectView: View {
             LabeledContent("Context", value: context.description)
             
             Section {
-                if let user = viewModel.loggedInUser {
+                if let user = model.loggedInUser {
                     LabeledContent("User", value: user)
                     Button("Logout", role: .destructive) {
-                        viewModel.logout()
+                        model.logout()
                     }
                 } else {
                     TaskButton("Login") {
-                        await viewModel.login()
+                        await model.login()
                     }
                 }
             }
         }
-        .navigationTitle("ObservableObject (custom init)")
-        .animation(.default, value: viewModel.loggedInUser)
+        .navigationTitle("Observation")
+        .animation(.default, value: model.loggedInUser)
     }
 }
 
 #Preview {
     NavigationStack {
-        CustomObserveableObjectView()
+        CustomObservationView()
     }
 }
