@@ -11,6 +11,7 @@ import Combine
 
 /// A property wrapper type that subscribes to an observable depenency object and
 /// invalidates a view whenever the observable dependency object changes.
+@MainActor
 @propertyWrapper
 public struct DependencyObject<ObjectType>: DynamicProperty where ObjectType: ObservableDependencyObject {
     @Environment(\.dependencies) private var dependencies
@@ -33,8 +34,7 @@ public struct DependencyObject<ObjectType>: DynamicProperty where ObjectType: Ob
         self.build = build
     }
     
-    @MainActor
-    private class Coordinator: ObservableObject {
+    @MainActor private class Coordinator: ObservableObject {
         var wrappedValue: ObjectType?
         private var cancellable: AnyCancellable?
         
@@ -60,17 +60,17 @@ public struct DependencyObject<ObjectType>: DynamicProperty where ObjectType: Ob
     // MARK: - @propertyWrapper
     
     /// The underlying value referenced by the dependency object.
-    @MainActor public var wrappedValue: ObjectType {
+    public var wrappedValue: ObjectType {
         coordinator.wrappedValue ?? ObjectType(dependencies: dependencies)
     }
     
     /// A projection of the dependency object that creates bindings to its properties.
-    @MainActor public var projectedValue: Wrapper {
+    public var projectedValue: Wrapper {
         Wrapper(value: wrappedValue)
     }
     
     /// A wrapper of the underlying observable object that can create bindings to its properties.
-    @dynamicMemberLookup public struct Wrapper {
+    @MainActor @dynamicMemberLookup public struct Wrapper: Sendable {
         private let value: ObjectType
         
         init(value: ObjectType) {
@@ -95,14 +95,16 @@ public struct DependencyObject<ObjectType>: DynamicProperty where ObjectType: Ob
     
     // MARK: - DynamicProperty
     
-    public func update() {
-        if let build = self.build {
-            coordinator.update {
-                build(dependencies)
-            }
-        } else {
-            coordinator.update {
-                ObjectType(dependencies: dependencies)
+    public nonisolated func update() {
+        MainActor.runSync {
+            if let build = self.build {
+                coordinator.update {
+                    build(dependencies)
+                }
+            } else {
+                coordinator.update {
+                    ObjectType(dependencies: dependencies)
+                }
             }
         }
     }

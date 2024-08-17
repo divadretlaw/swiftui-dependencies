@@ -11,6 +11,7 @@ import SwiftUI
 @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, visionOS 1.0, *)
 /// A property wrapper type that subscribes to an observable depenency object and
 /// invalidates a view whenever the observable dependency object changes.
+@MainActor
 @propertyWrapper
 public struct DependencyState<Value>: DynamicProperty where Value: ObservableDependency {
     @Environment(\.dependencies) private var dependencies
@@ -46,17 +47,17 @@ public struct DependencyState<Value>: DynamicProperty where Value: ObservableDep
     // MARK: - @propertyWrapper
     
     /// The underlying value referenced by the dependency object.
-    @MainActor public var wrappedValue: Value {
+    public var wrappedValue: Value {
         coordinator.wrappedValue ?? Value(dependencies: dependencies)
     }
     
     /// A projection of the dependency object that creates bindings to its properties.
-    @MainActor public var projectedValue: Wrapper {
+    public var projectedValue: Wrapper {
         Wrapper(value: wrappedValue)
     }
     
     /// A wrapper of the underlying observable object that can create bindings to its properties.
-    @dynamicMemberLookup public struct Wrapper {
+    @MainActor @dynamicMemberLookup public struct Wrapper: Sendable {
         private let value: Value
         
         init(value: Value) {
@@ -79,14 +80,16 @@ public struct DependencyState<Value>: DynamicProperty where Value: ObservableDep
     
     // MARK: - DynamicProperty
     
-    public func update() {
-        if let build = self.build {
-            coordinator.update {
-                build(dependencies)
-            }
-        } else {
-            coordinator.update {
-                Value(dependencies: dependencies)
+    public nonisolated func update() {
+        MainActor.runSync {
+            if let build = self.build {
+                coordinator.update {
+                    build(dependencies)
+                }
+            } else {
+                coordinator.update {
+                    Value(dependencies: dependencies)
+                }
             }
         }
     }
