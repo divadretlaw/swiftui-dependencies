@@ -6,7 +6,7 @@ import Dependencies
     
     private let api: API
     
-    nonisolated required init(dependencies: DependencyValues) {
+    required init(dependencies: DependencyValues) {
         self.api = dependencies.api
     }
     

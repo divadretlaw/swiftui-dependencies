@@ -14,5 +14,5 @@ public protocol DependencyInjectable {
     /// - Parameter dependencies: The registered dependencies
     ///
     /// The provided dependencies depend on the current ``DependencyContext``
-    init(dependencies: DependencyValues)
+    @MainActor init(dependencies: DependencyValues)
 }
