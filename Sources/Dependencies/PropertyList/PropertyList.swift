@@ -16,8 +16,8 @@ struct PropertyList: ExpressibleByDictionaryLiteral, CustomStringConvertible {
     
     init(dictionaryLiteral elements: (PropertyKey, Any)...) {
         var dictionary: [PropertyKey: Any] = [:]
-        for element in elements {
-            dictionary[element.0] = element.1
+        for (key, value) in elements {
+            dictionary[key] = value
         }
         self.elements = dictionary
     }

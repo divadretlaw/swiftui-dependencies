@@ -7,7 +7,7 @@ import Dependencies
     private let api: API
     
     init(value: String, dependencies: DependencyValues) {
-        self.loggedInUser = "Test"
+        self.loggedInUser = value
         self.api = dependencies.api
     }
     
