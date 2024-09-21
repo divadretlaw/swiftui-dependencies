@@ -1,5 +1,5 @@
 //
-//  DependencyKey.swift
+//  DependencyState.swift
 //  swiftui-dependencies
 //
 //  Created by David Walter on 29.09.23.
@@ -34,8 +34,7 @@ public struct DependencyState<Value>: DynamicProperty where Value: ObservableDep
         self.build = build
     }
     
-    @Observable
-    final class Coordinator {
+    @Observable final class Coordinator {
         private(set) var wrappedValue: Value?
         
         func update(build: () -> Value) {
@@ -82,7 +81,7 @@ public struct DependencyState<Value>: DynamicProperty where Value: ObservableDep
     
     public nonisolated func update() {
         MainActor.runSync {
-            if let build = self.build {
+            if let build {
                 coordinator.update {
                     build(dependencies)
                 }

@@ -1,5 +1,5 @@
 //
-//  MainActor.swift
+//  MainActor+Extensions.swift
 //  swiftui-dependencies
 //
 //  Created by David Walter on 14.07.24.
@@ -15,10 +15,10 @@ extension MainActor {
     @inlinable
     static func runSync<T>(_ body: @MainActor () throws -> T) rethrows -> T where T: Sendable {
         if Thread.isMainThread {
-            return try MainActor.assumeIsolated(body)
+            try MainActor.assumeIsolated(body)
         } else {
-            return try DispatchQueue.main.sync {
-                return try MainActor.assumeIsolated(body)
+            try DispatchQueue.main.sync {
+                try MainActor.assumeIsolated(body)
             }
         }
     }

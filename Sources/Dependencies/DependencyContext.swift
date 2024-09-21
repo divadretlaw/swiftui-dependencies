@@ -37,6 +37,8 @@ public enum DependencyContext: Equatable, Sendable, CustomStringConvertible {
         }
     }
     
+    // MARK: CustomStringConvertible
+    
     public var description: String {
         switch self {
         case .default:
@@ -59,6 +61,8 @@ extension ProcessInfo {
             .contains(where: environment.keys.contains)
     }
 }
+
+// MARK: - Environment
 
 private struct DependencyContextKey: EnvironmentKey {
     static var defaultValue: DependencyContext { .current }

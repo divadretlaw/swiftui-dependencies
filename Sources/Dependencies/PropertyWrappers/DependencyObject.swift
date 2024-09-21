@@ -1,5 +1,5 @@
 //
-//  DependencyKey.swift
+//  DependencyObject.swift
 //  swiftui-dependencies
 //
 //  Created by David Walter on 29.09.23.
@@ -34,7 +34,7 @@ public struct DependencyObject<ObjectType>: DynamicProperty where ObjectType: Ob
         self.build = build
     }
     
-    @MainActor private class Coordinator: ObservableObject {
+    @MainActor private final class Coordinator: ObservableObject {
         var wrappedValue: ObjectType?
         private var cancellable: AnyCancellable?
         
@@ -97,7 +97,7 @@ public struct DependencyObject<ObjectType>: DynamicProperty where ObjectType: Ob
     
     public nonisolated func update() {
         MainActor.runSync {
-            if let build = self.build {
+            if let build {
                 coordinator.update {
                     build(dependencies)
                 }

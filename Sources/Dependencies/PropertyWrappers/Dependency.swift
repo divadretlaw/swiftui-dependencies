@@ -31,7 +31,7 @@ import SwiftUI
     ///     // ...
     /// }
     /// ```
-    /// 
+    ///
     /// SwiftUI automatically updates any parts of `MyView` that depend on
     /// the property when the associated dependency value changes.
     /// You can't modify the dependency value using a property like this.
@@ -49,12 +49,13 @@ import SwiftUI
     /// However, you don't access `wrappedValue` directly. Instead, you read the
     /// property variable created with the ``Dependency`` property wrapper:
     ///
-    ///     @Dependency(\.date) var date: Date
+    /// ```swift
+    /// @Dependency(\.date) var date: Date
     ///
-    ///     var body: some View {
-    ///         Text(date)
-    ///     }
-    ///
+    /// var body: some View {
+    ///     Text(date)
+    /// }
+    /// ```
     public var wrappedValue: Value {
         dependencies[keyPath: keyPath]
     }
