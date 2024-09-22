@@ -14,8 +14,9 @@
 		63124AD52AC82C36003EF777 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63124AD42AC82C36003EF777 /* ViewModel.swift */; };
 		63124AD72AC82C50003EF777 /* CustomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63124AD62AC82C50003EF777 /* CustomViewModel.swift */; };
 		63124AD92AC82F13003EF777 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63124AD82AC82F13003EF777 /* Model.swift */; };
-		63124ADF2AC83E92003EF777 /* APIDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63124ADE2AC83E92003EF777 /* APIDependency.swift */; };
+		63124ADF2AC83E92003EF777 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63124ADE2AC83E92003EF777 /* API.swift */; };
 		63124AE12AC83FB3003EF777 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63124AE02AC83FB3003EF777 /* LoginResponse.swift */; };
+		632D6C4F2CA0B0BE00E19FDB /* Mode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632D6C4E2CA0B0BE00E19FDB /* Mode.swift */; };
 		634132522AC9970000A868F6 /* TaskButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634132512AC9970000A868F6 /* TaskButton.swift */; };
 		637BCAA82B9C969C00C92883 /* CustomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637BCAA72B9C969C00C92883 /* CustomModel.swift */; };
 		637BCAAA2B9C96F200C92883 /* CustomObservationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637BCAA92B9C96F200C92883 /* CustomObservationView.swift */; };
@@ -34,8 +35,9 @@
 		63124AD62AC82C50003EF777 /* CustomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewModel.swift; sourceTree = "<group>"; };
 		63124AD82AC82F13003EF777 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		63124ADD2AC83E00003EF777 /* Dependencies */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = Dependencies; path = ..; sourceTree = "<group>"; };
-		63124ADE2AC83E92003EF777 /* APIDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIDependency.swift; sourceTree = "<group>"; };
+		63124ADE2AC83E92003EF777 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		63124AE02AC83FB3003EF777 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
+		632D6C4E2CA0B0BE00E19FDB /* Mode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mode.swift; sourceTree = "<group>"; };
 		634132512AC9970000A868F6 /* TaskButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskButton.swift; sourceTree = "<group>"; };
 		637BCAA72B9C969C00C92883 /* CustomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModel.swift; sourceTree = "<group>"; };
 		637BCAA92B9C96F200C92883 /* CustomObservationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomObservationView.swift; sourceTree = "<group>"; };
@@ -85,7 +87,8 @@
 		63124ADA2AC82F61003EF777 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				63124ADE2AC83E92003EF777 /* APIDependency.swift */,
+				63124ADE2AC83E92003EF777 /* API.swift */,
+				632D6C4E2CA0B0BE00E19FDB /* Mode.swift */,
 			);
 			path = Dependencies;
 			sourceTree = "<group>";
@@ -217,12 +220,13 @@
 				63092C852AD07CD90044EB5E /* SwiftUIView.swift in Sources */,
 				63092C812AD07BF20044EB5E /* CustomObservableObject.swift in Sources */,
 				634132522AC9970000A868F6 /* TaskButton.swift in Sources */,
-				63124ADF2AC83E92003EF777 /* APIDependency.swift in Sources */,
+				63124ADF2AC83E92003EF777 /* API.swift in Sources */,
 				63092C7F2AD07B8A0044EB5E /* ObserveableObjectView.swift in Sources */,
 				63124AD72AC82C50003EF777 /* CustomViewModel.swift in Sources */,
 				637BCAAA2B9C96F200C92883 /* CustomObservationView.swift in Sources */,
 				63124AD52AC82C36003EF777 /* ViewModel.swift in Sources */,
 				63124AE12AC83FB3003EF777 /* LoginResponse.swift in Sources */,
+				632D6C4F2CA0B0BE00E19FDB /* Mode.swift in Sources */,
 				63092C832AD07C5C0044EB5E /* ObservationView.swift in Sources */,
 				639841682AC7095300D94E99 /* DemoApp.swift in Sources */,
 				637BCAA82B9C969C00C92883 /* CustomModel.swift in Sources */,

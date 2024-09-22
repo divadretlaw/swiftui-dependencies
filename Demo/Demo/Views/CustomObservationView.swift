@@ -31,6 +31,7 @@ struct CustomObservationView: View {
         }
         .navigationTitle("Observation")
         .animation(.default, value: model.loggedInUser)
+        .modifier(DemoViewModifier())
     }
 }
 

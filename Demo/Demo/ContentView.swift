@@ -3,45 +3,91 @@ import Dependencies
 
 struct ContentView: View {
     @Environment(\.dependencyContext) private var context
+    @Environment(\.dismiss) private var dismiss
+    
+    @Dependency(\.mode) private var mode
+    
+    @State private var showDemo = false
     
     var body: some View {
         NavigationStack {
             List {
-                LabeledContent("Context", value: context.description)
+                Section {
+                    LabeledContent("Context", value: context.description)
+                    
+                    if mode != .demo {
+                        Button {
+                            showDemo = true
+                        } label: {
+                            Text("Demo")
+                        }
+                    }
+                }
                 
                 Section {
                     NavigationLink {
                         ObserveableObjectView()
                     } label: {
-                        Text("ObservableObject")
+                        Text("Default")
                     }
                     
                     NavigationLink {
                         CustomObserveableObjectView()
                     } label: {
-                        Text("ObservableObject (custom init)")
+                        Text("Custom init")
                     }
-                    
+                } header: {
+                    Text("ObservableObject")
+                        .headerProminence(.increased)
+                }
+                 
+                Section {
                     NavigationLink {
                         ObservationView()
                     } label: {
-                        Text("Observation")
+                        Text("Default")
                     }
                     
                     NavigationLink {
                         CustomObservationView()
                     } label: {
-                        Text("Observation (custom init)")
+                        Text("Custom init")
                     }
-                    
+                } header: {
+                    Text("Observation")
+                        .headerProminence(.increased)
+                }
+                
+                Section {
                     NavigationLink {
                         SwiftUIView()
                     } label: {
-                        Text("SwiftUI")
+                        Text("Default")
+                    }
+                } header: {
+                    Text("SwiftUI")
+                        .headerProminence(.increased)
+                }
+            }
+            .listStyle(.insetGrouped)
+            .fullScreenCover(isPresented: $showDemo) {
+                ContentView()
+                    .dependency(\.mode, .demo)
+                    .dependency(\.api, DemoAPI())
+            }
+            .navigationTitle(mode == .demo ? "Demo" : "Dependencies")
+            .modifier(DemoViewModifier())
+            .toolbar {
+                ToolbarItemGroup(placement: .primaryAction) {
+                    if mode == .demo {
+                        Button {
+                            dismiss()
+                        } label: {
+                            Text("Close")
+                        }
                     }
                 }
             }
-            .navigationTitle("Demo")
         }
     }
 }
@@ -50,7 +96,7 @@ struct ContentView: View {
     ContentView()
 }
 
-#Preview("Content View with overriden API") {
+#Preview("Content View with overriden dependency") {
     ContentView()
         .dependency(\.api, AppAPI(session: .shared))
 }

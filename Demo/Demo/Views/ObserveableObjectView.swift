@@ -25,6 +25,7 @@ struct ObserveableObjectView: View {
         }
         .navigationTitle("ObservableObject")
         .animation(.default, value: viewModel.loggedInUser)
+        .modifier(DemoViewModifier())
     }
 }
 

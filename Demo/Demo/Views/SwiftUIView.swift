@@ -27,6 +27,7 @@ struct SwiftUIView: View {
         }
         .navigationTitle("SwiftUI")
         .animation(.default, value: loggedInUser)
+        .modifier(DemoViewModifier())
     }
     
     func login() async {

@@ -25,6 +25,7 @@ struct ObservationView: View {
         }
         .navigationTitle("Observation")
         .animation(.default, value: model.loggedInUser)
+        .modifier(DemoViewModifier())
     }
 }
 

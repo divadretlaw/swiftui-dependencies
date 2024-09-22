@@ -39,6 +39,14 @@ struct TestAPI: API {
     }
 }
 
+struct DemoAPI: API {
+    var version: String { "demo" }
+    
+    func login() async throws -> String {
+        return "Demo-User"
+    }
+}
+
 private struct ApiKey: DependencyKey {
     static var defaultValue: API {
         AppAPI(session: .shared)

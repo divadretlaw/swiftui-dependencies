@@ -31,6 +31,7 @@ struct CustomObserveableObjectView: View {
         }
         .navigationTitle("ObservableObject (custom init)")
         .animation(.default, value: viewModel.loggedInUser)
+        .modifier(DemoViewModifier())
     }
 }
 

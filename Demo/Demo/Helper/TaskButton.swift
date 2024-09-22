@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct TaskButton<Label>: View where Label: View {
-    var action: @Sendable () async -> Void
+    var action: @MainActor @Sendable () async -> Void
     var label: (Bool) -> Label
     
     @State private var isRunning = false
