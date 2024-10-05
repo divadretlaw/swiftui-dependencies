@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 /// The context of the dependencies
-public enum DependencyContext: Equatable, Sendable, CustomStringConvertible {
+public enum DependencyContext: Identifiable, Hashable, Equatable, Sendable, CustomStringConvertible {
     /// The default context for dependencies.
     ///
     /// This context is automatically used when no other context was determined.
@@ -34,6 +34,19 @@ public enum DependencyContext: Equatable, Sendable, CustomStringConvertible {
             return .testing
         } else {
             return .default
+        }
+    }
+    
+    // MARK: Identifiable
+    
+    public var id: String {
+        switch self {
+        case .default:
+            return "default"
+        case .preview:
+            return "preview"
+        case .testing:
+            return "testing"
         }
     }
     

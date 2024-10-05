@@ -28,8 +28,18 @@ public extension View {
         _ keyPath: WritableKeyPath<DependencyValues, V>,
         _ value: V
     ) -> some View {
-        transformEnvironment(\.dependencies) { dependencies in
-            dependencies[keyPath: keyPath] = value
-        }
+        modifier(DependenciesViewModifier(keyPath: keyPath, value: value))
+    }
+}
+
+private struct DependenciesViewModifier<V>: ViewModifier {
+    let keyPath: WritableKeyPath<DependencyValues, V>
+    let value: V
+    
+    func body(content: Content) -> some View {
+        content
+            .transformEnvironment(\.dependencies) { dependencies in
+                dependencies[keyPath: keyPath] = value
+            }
     }
 }
