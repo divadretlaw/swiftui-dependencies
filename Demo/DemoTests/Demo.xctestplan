@@ -1,0 +1,35 @@
+{
+  "configurations" : [
+    {
+      "id" : "2F21AF0A-1DC6-490C-B9B4-AF89EE6ABA1B",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "environmentVariableEntries" : [
+      {
+        "key" : "SNAPSHOT_TESTING_RECORD",
+        "value" : "never"
+      }
+    ],
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Demo.xcodeproj",
+      "identifier" : "639841632AC7095300D94E99",
+      "name" : "Demo"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : false,
+      "target" : {
+        "containerPath" : "container:Demo.xcodeproj",
+        "identifier" : "636F3C542D4513AC00E9880D",
+        "name" : "DemoTests"
+      }
+    }
+  ],
+  "version" : 1
+}

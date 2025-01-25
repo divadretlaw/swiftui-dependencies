@@ -8,13 +8,14 @@ struct CustomObserveableObjectView: View {
     
     init() {
         _viewModel = DependencyObject { dependencies in
-            CustomViewModel(value: "Test", dependencies: dependencies)
+            CustomViewModel(user: "Test", dependencies: dependencies)
         }
     }
     
     var body: some View {
         List {
             LabeledContent("Context", value: context.description)
+            LabeledContent("API version", value: viewModel.version)
             
             Section {
                 if let user = viewModel.loggedInUser {

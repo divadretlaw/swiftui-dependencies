@@ -40,7 +40,7 @@ struct ContentView: View {
                     Text("ObservableObject")
                         .headerProminence(.increased)
                 }
-                 
+                
                 Section {
                     NavigationLink {
                         ObservationView()
@@ -93,6 +93,7 @@ struct ContentView: View {
 }
 
 #Preview("Content View") {
+    /// This will automatically use all dependencies defined in `DependencyKey` in `previewValue`
     ContentView()
 }
 

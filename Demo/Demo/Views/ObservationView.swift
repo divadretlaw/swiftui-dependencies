@@ -9,6 +9,7 @@ struct ObservationView: View {
     var body: some View {
         List {
             LabeledContent("Context", value: context.description)
+            LabeledContent("API version", value: model.version)
             
             Section {
                 if let user = model.loggedInUser {
