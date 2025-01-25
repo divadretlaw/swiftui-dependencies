@@ -9,6 +9,7 @@ struct ObserveableObjectView: View {
     var body: some View {
         List {
             LabeledContent("Context", value: context.description)
+            LabeledContent("API version", value: viewModel.version)
             
             Section {
                 if let user = viewModel.loggedInUser {

@@ -93,6 +93,7 @@ struct ContentView: View {
 }
 
 #Preview("Content View") {
+    /// This will automatically use all dependencies defined in `DependencyKey` in `previewValue`
     ContentView()
 }
 

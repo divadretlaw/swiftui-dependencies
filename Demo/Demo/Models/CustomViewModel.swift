@@ -1,4 +1,5 @@
 import Foundation
+import OSLog
 import Dependencies
 
 @MainActor final class CustomViewModel: ObservableDependencyObject {
@@ -6,21 +7,35 @@ import Dependencies
     
     private let api: API
     
-    init(value: String, dependencies: DependencyValues) {
-        self.loggedInUser = value
+    init(user: String, dependencies: DependencyValues) {
+        Logger.demo.debug("CustomViewModel.\(#function)")
+        
+        self.loggedInUser = user
         self.api = dependencies.api
     }
     
+    deinit {
+        Logger.demo.debug("CustomViewModel.\(#function)")
+    }
+    
+    var version: String {
+        api.version
+    }
+    
     func login() async {
+        Logger.demo.track()
+        
         do {
             self.loggedInUser = try await api.login()
         } catch {
-            print(error.localizedDescription)
+            Logger.demo.error("\(error.localizedDescription)")
             self.loggedInUser = nil
         }
     }
     
     func logout() {
+        Logger.demo.track()
+        
         self.loggedInUser = nil
     }
 }

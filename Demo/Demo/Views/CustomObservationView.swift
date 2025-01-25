@@ -8,13 +8,14 @@ struct CustomObservationView: View {
     
     init() {
         _model = DependencyState { dependencies in
-            CustomModel(value: "Test", dependencies: dependencies)
+            CustomModel(user: "Test", dependencies: dependencies)
         }
     }
     
     var body: some View {
         List {
             LabeledContent("Context", value: context.description)
+            LabeledContent("API version", value: model.version)
             
             Section {
                 if let user = model.loggedInUser {

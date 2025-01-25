@@ -1,4 +1,5 @@
 import SwiftUI
+import OSLog
 import Dependencies
 
 @MainActor
@@ -11,6 +12,7 @@ struct SwiftUIView: View {
     var body: some View {
         List {
             LabeledContent("Context", value: context.description)
+            LabeledContent("API version", value: api.version)
             
             Section {
                 if let user = loggedInUser {
@@ -31,15 +33,19 @@ struct SwiftUIView: View {
     }
     
     func login() async {
+        Logger.demo.track()
+        
         do {
             self.loggedInUser = try await api.login()
         } catch {
-            print(error.localizedDescription)
+            Logger.demo.error("\(error.localizedDescription)")
             self.loggedInUser = nil
         }
     }
     
     func logout() {
+        Logger.demo.track()
+        
         self.loggedInUser = nil
     }
 }
