@@ -16,7 +16,7 @@ import SwiftUI
 public struct DependencyState<Value>: DynamicProperty where Value: ObservableDependency {
     @Environment(\.dependencies) private var dependencies
     
-    @State private var coordinator = Coordinator()
+    @StateObject private var coordinator = Coordinator()
     private let build: ((_ dependencies: DependencyValues) -> Value)?
     
     /// Creates an observed object without an initial value.
@@ -34,12 +34,12 @@ public struct DependencyState<Value>: DynamicProperty where Value: ObservableDep
         self.build = build
     }
     
-    @Observable final class Coordinator {
+    final class Coordinator: ObservableObject {
         private(set) var wrappedValue: Value?
         
         func update(build: () -> Value) {
             guard wrappedValue == nil else { return }
-            self.wrappedValue = build()
+            wrappedValue = build()
         }
     }
     
@@ -80,7 +80,7 @@ public struct DependencyState<Value>: DynamicProperty where Value: ObservableDep
     // MARK: - DynamicProperty
     
     public nonisolated func update() {
-        MainActor.runSync {
+        MainActor.dispatch {
             if let build {
                 coordinator.update {
                     build(dependencies)

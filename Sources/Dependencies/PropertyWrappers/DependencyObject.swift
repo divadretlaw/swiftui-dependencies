@@ -34,8 +34,13 @@ public struct DependencyObject<ObjectType>: DynamicProperty where ObjectType: Ob
         self.build = build
     }
     
-    @MainActor private final class Coordinator: ObservableObject {
-        var wrappedValue: ObjectType?
+    private final class Coordinator: ObservableObject {
+        typealias ObjectWillChangePublisher = PassthroughSubject<ObjectType.ObjectWillChangePublisher.Output, Never>
+        
+        private(set) var wrappedValue: ObjectType?
+        
+        let objectWillChange = ObjectWillChangePublisher()
+        
         private var cancellable: AnyCancellable?
         
         func update(build: () -> ObjectType) {
@@ -46,13 +51,13 @@ public struct DependencyObject<ObjectType>: DynamicProperty where ObjectType: Ob
             defer { isUpdating = false }
             
             let value = build()
-            self.wrappedValue = value
+            wrappedValue = value
             
             self.cancellable = value.objectWillChange
                 .receive(on: DispatchQueue.main)
-                .sink { [weak self] _ in
+                .sink { [weak self] value in
                     guard let self, !isUpdating else { return }
-                    self.objectWillChange.send()
+                    self.objectWillChange.send(value)
                 }
         }
     }
@@ -96,7 +101,7 @@ public struct DependencyObject<ObjectType>: DynamicProperty where ObjectType: Ob
     // MARK: - DynamicProperty
     
     public nonisolated func update() {
-        MainActor.runSync {
+        MainActor.dispatch {
             if let build {
                 coordinator.update {
                     build(dependencies)

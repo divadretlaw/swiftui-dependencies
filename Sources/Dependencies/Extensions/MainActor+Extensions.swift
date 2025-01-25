@@ -13,7 +13,7 @@ extension MainActor {
     /// The method will be dispatched in sync to the main-thread if its on a non-main thread.
     @_unavailableFromAsync
     @inlinable
-    static func runSync<T>(_ body: @MainActor () throws -> T) rethrows -> T where T: Sendable {
+    static func dispatch<T>(_ body: @MainActor () throws -> T) rethrows -> T where T: Sendable {
         if Thread.isMainThread {
             try MainActor.assumeIsolated(body)
         } else {
