@@ -1,20 +1,22 @@
-import XCTest
+import Testing
 @testable import Dependencies
 
-final class PropertyListTests: XCTestCase {
-    func testEmpty() throws {
+struct PropertyListTests {
+    @Test
+    func empty() {
         let list = PropertyList()
-        XCTAssertTrue(list.isEmpty)
-        XCTAssertEqual(list.description, "[]")
+        #expect(list.isEmpty)
+        #expect(list.description == "[]")
     }
     
-    func testAdd() throws {
+    @Test
+    func add() throws {
         var list = PropertyList()
-        XCTAssertTrue(list.isEmpty)
+        #expect(list.isEmpty)
         list[TestDependencyKey.self] = "Test"
-        XCTAssertFalse(list.isEmpty)
-        XCTAssertEqual(list[TestDependencyKey.self], "Test")
-        XCTAssertEqual(list.description, "[TestDependencyKey = Test]")
+        #expect(!list.isEmpty)
+        #expect(list[TestDependencyKey.self] == "Test")
+        #expect(list.description == "[TestDependencyKey = Test]")
     }
 }
 

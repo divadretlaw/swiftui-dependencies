@@ -1,38 +1,42 @@
-import XCTest
+import Testing
 @testable import Dependencies
 
-final class DependenciesTests: XCTestCase {
-    func testContext() throws {
-        XCTAssertEqual(DependencyContext.current, .testing)
+struct DependenciesTests {
+    @Test
+    func context() throws {
+        #expect(DependencyContext.current == .testing)
     }
     
-    func testKey() throws {
+    @Test
+    func key() throws {
         var values = DependencyValues()
-        XCTAssertEqual(values.test, TestDependencyKey.testingValue)
+        #expect(values.test == TestDependencyKey.testingValue)
         values.test = 1
-        XCTAssertEqual(values.test, 1)
+        #expect(values.test == 1)
     }
     
-    func testOnlyDefaultValue() throws {
+    @Test
+    func onlyDefaultValue() throws {
         struct TestOnlyDependencyKey: DependencyKey {
             static var defaultValue: Int { 0 }
         }
         
-        XCTAssertEqual(TestOnlyDependencyKey.defaultValue, TestOnlyDependencyKey.previewValue)
-        XCTAssertEqual(TestOnlyDependencyKey.defaultValue, TestOnlyDependencyKey.testingValue)
-        XCTAssertEqual(TestOnlyDependencyKey.previewValue, TestOnlyDependencyKey.testingValue)
+        #expect(TestOnlyDependencyKey.defaultValue == TestOnlyDependencyKey.previewValue)
+        #expect(TestOnlyDependencyKey.defaultValue == TestOnlyDependencyKey.testingValue)
+        #expect(TestOnlyDependencyKey.previewValue == TestOnlyDependencyKey.testingValue)
     }
     
-    func testAllValues() throws {
+    @Test
+    func allValues() throws {
         struct TestOnlyDependencyKey: DependencyKey {
             static var defaultValue: Int { 1 }
             static var previewValue: Int { 2 }
             static var testingValue: Int { 3 }
         }
         
-        XCTAssertNotEqual(TestOnlyDependencyKey.defaultValue, TestOnlyDependencyKey.previewValue)
-        XCTAssertNotEqual(TestOnlyDependencyKey.defaultValue, TestOnlyDependencyKey.testingValue)
-        XCTAssertNotEqual(TestOnlyDependencyKey.previewValue, TestOnlyDependencyKey.testingValue)
+        #expect(TestOnlyDependencyKey.defaultValue != TestOnlyDependencyKey.previewValue)
+        #expect(TestOnlyDependencyKey.defaultValue != TestOnlyDependencyKey.testingValue)
+        #expect(TestOnlyDependencyKey.previewValue != TestOnlyDependencyKey.testingValue)
     }
 }
 
@@ -42,7 +46,7 @@ private struct TestDependencyKey: DependencyKey {
     static var testingValue: Int { 0 }
 }
 
-extension DependencyValues {
+private extension DependencyValues {
     var test: Int {
         get { self[TestDependencyKey.self] }
         set { self[TestDependencyKey.self] = newValue }
