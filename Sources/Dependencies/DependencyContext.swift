@@ -70,8 +70,31 @@ extension ProcessInfo {
     }
     
     var isTesting: Bool {
-        ["XCTestConfigurationFilePath", "XCTestBundlePath", "XCTestSessionIdentifier"]
-            .contains(where: environment.keys.contains)
+        // Testing via Xcode
+        
+        if environment.keys.contains("XCTestBundlePath") {
+            return true
+        }
+        if environment.keys.contains("XCTestConfigurationFilePath") {
+            return true
+        }
+        if environment.keys.contains("XCTestSessionIdentifier") {
+            return true
+        }
+
+        // Testing via swift CLI
+        if arguments.contains(where: { argument in
+            let url = URL(fileURLWithPath: argument)
+            return url.lastPathComponent == "xctest" || url.pathExtension == "xctest"
+        }) {
+            return true
+        }
+
+        if arguments.contains("--testing-library"), arguments.contains("swift-testing") {
+            return true
+        }
+
+        return false
     }
 }
 
