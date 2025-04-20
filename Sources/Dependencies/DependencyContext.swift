@@ -25,7 +25,7 @@ public enum DependencyContext: Identifiable, Hashable, Equatable, Sendable, Cust
     /// This context is automatically used when running in a XCTest.
     /// Dependencies accessed from this context will use ``DependencyKey/testingValue`` as the default value.
     case testing
-    
+
     /// Returns the current ``DependencyContext``
     static var current: DependencyContext {
         if ProcessInfo.processInfo.isPreview {
@@ -36,9 +36,9 @@ public enum DependencyContext: Identifiable, Hashable, Equatable, Sendable, Cust
             return .default
         }
     }
-    
+
     // MARK: Identifiable
-    
+
     public var id: String {
         switch self {
         case .default:
@@ -49,9 +49,9 @@ public enum DependencyContext: Identifiable, Hashable, Equatable, Sendable, Cust
             return "testing"
         }
     }
-    
+
     // MARK: CustomStringConvertible
-    
+
     public var description: String {
         switch self {
         case .default:
@@ -68,10 +68,10 @@ extension ProcessInfo {
     var isPreview: Bool {
         environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
     }
-    
+
     var isTesting: Bool {
         // Testing via Xcode
-        
+
         if environment.keys.contains("XCTestBundlePath") {
             return true
         }
@@ -104,9 +104,9 @@ private struct DependencyContextKey: EnvironmentKey {
     static var defaultValue: DependencyContext { .current }
 }
 
-public extension EnvironmentValues {
+extension EnvironmentValues {
     /// The current ``DependencyContext`` of the dependencies
-    var dependencyContext: DependencyContext {
+    public var dependencyContext: DependencyContext {
         self[DependencyContextKey.self]
     }
 }

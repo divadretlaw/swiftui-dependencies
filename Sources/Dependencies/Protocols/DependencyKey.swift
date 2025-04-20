@@ -50,7 +50,7 @@ import SwiftUI
 public protocol DependencyKey {
     /// The associated type representing the type of the dependency key's value.
     associatedtype Value = Self
-    
+
     /// The default value for the dependecy key in the ``DependencyContext/default`` context
     static var defaultValue: Value { get }
     /// The default  value for the dependecy key in the ``DependencyContext/preview`` context
@@ -61,9 +61,9 @@ public protocol DependencyKey {
 
 // MARK: - Default implementations
 
-public extension DependencyKey {
+extension DependencyKey {
     /// Default implementation: Will use ``DependencyKey/testingValue``
-    static var previewValue: Value { testingValue }
+    public static var previewValue: Value { testingValue }
     /// Default implementation: Will use ``DependencyKey/defaultValue``
-    static var testingValue: Value { defaultValue }
+    public static var testingValue: Value { defaultValue }
 }

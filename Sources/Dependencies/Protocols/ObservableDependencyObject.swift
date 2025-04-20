@@ -13,18 +13,18 @@ public protocol ObservableDependencyObject: ObservableObject, DependencyInjectab
 
 // MARK: - Default implementations
 
-public extension ObservableDependencyObject {
+extension ObservableDependencyObject {
     // swiftlint:disable:next missing_docs
-    init(dependencies: DependencyValues) {
+    public init(dependencies: DependencyValues) {
         let name = String(describing: Self.self)
         let message = """
-        '\(#function)' has not been implemented for '\(name)'.
-        
-        If this was intentional, please initialize your view model like this:
-        _viewModel = DependencyObject { dependencies in
-            \(name).init
-        }
-        """
+            '\(#function)' has not been implemented for '\(name)'.
+
+            If this was intentional, please initialize your view model like this:
+            _viewModel = DependencyObject { dependencies in
+                \(name).init
+            }
+            """
         fatalError(message)
     }
 }

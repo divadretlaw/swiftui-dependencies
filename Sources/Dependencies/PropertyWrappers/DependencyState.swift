@@ -15,10 +15,10 @@ import SwiftUI
 @propertyWrapper
 public struct DependencyState<Value>: DynamicProperty where Value: ObservableDependency {
     @Environment(\.dependencies) private var dependencies
-    
+
     @StateObject private var coordinator = Coordinator()
     private let build: ((_ dependencies: DependencyValues) -> Value)?
-    
+
     /// Creates an observed object without an initial value.
     ///
     /// Don't call this initializer directly. Instead, declare
@@ -26,43 +26,43 @@ public struct DependencyState<Value>: DynamicProperty where Value: ObservableDep
     public init() {
         self.build = nil
     }
-    
+
     /// Creates a new ``DependencyState`` with a closure that initializes an observed object from dependency values.
     ///
     /// - Parameter build: Callback that initializes the observed object
     public init(_ build: @escaping (_ dependencies: DependencyValues) -> Value) {
         self.build = build
     }
-    
+
     final class Coordinator: ObservableObject {
         private(set) var wrappedValue: Value?
-        
+
         func update(build: () -> Value) {
             guard wrappedValue == nil else { return }
             wrappedValue = build()
         }
     }
-    
+
     // MARK: - @propertyWrapper
-    
+
     /// The underlying value referenced by the dependency object.
     public var wrappedValue: Value {
         coordinator.wrappedValue ?? Value(dependencies: dependencies)
     }
-    
+
     /// A projection of the dependency object that creates bindings to its properties.
     public var projectedValue: Wrapper {
         Wrapper(value: wrappedValue)
     }
-    
+
     /// A wrapper of the underlying observable object that can create bindings to its properties.
     @MainActor @dynamicMemberLookup public struct Wrapper: Sendable {
         private let value: Value
-        
+
         init(value: Value) {
             self.value = value
         }
-        
+
         /// Gets a binding to the value of a specified key path.
         ///
         /// - Parameter keyPath: A key path to a specific  value.
@@ -76,9 +76,9 @@ public struct DependencyState<Value>: DynamicProperty where Value: ObservableDep
             }
         }
     }
-    
+
     // MARK: - DynamicProperty
-    
+
     public nonisolated func update() {
         MainActor.dispatch {
             if let build {

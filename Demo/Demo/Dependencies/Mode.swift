@@ -26,9 +26,7 @@ enum Mode: Sendable {
 }
 
 private struct ModeKey: DependencyKey {
-    static var defaultValue: Mode {
-        .live
-    }
+    static let defaultValue: Mode = .live
 }
 
 extension DependencyValues {

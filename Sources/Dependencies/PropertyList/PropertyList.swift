@@ -9,11 +9,11 @@ import Foundation
 
 struct PropertyList: ExpressibleByDictionaryLiteral, CustomStringConvertible {
     private var elements: [PropertyKey: Any]
-    
+
     init() {
         self.elements = [:]
     }
-    
+
     init(dictionaryLiteral elements: (PropertyKey, Any)...) {
         var dictionary: [PropertyKey: Any] = [:]
         for (key, value) in elements {
@@ -21,7 +21,7 @@ struct PropertyList: ExpressibleByDictionaryLiteral, CustomStringConvertible {
         }
         self.elements = dictionary
     }
-    
+
     subscript<K>(keyType: K.Type) -> K.Value? where K: DependencyKey {
         get {
             let key = PropertyKey(keyType: keyType)
@@ -32,13 +32,13 @@ struct PropertyList: ExpressibleByDictionaryLiteral, CustomStringConvertible {
             elements[key] = newValue
         }
     }
-    
+
     var isEmpty: Bool {
         elements.isEmpty
     }
-    
+
     // MARK: - CustomStringConvertible
-    
+
     var description: String {
         let description = elements
             .map { key, value in

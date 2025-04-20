@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-public extension View {
+extension View {
     /// Sets the dependency value of the specified key path to the given value.
     ///
     /// Use this modifier to set one of the writable properties of the
@@ -24,7 +24,7 @@ public extension View {
     ///   - value: The new value to set for the item specified by `keyPath`.
     ///
     /// - Returns: A view that has the given value set in its dependencies.
-    func dependency<V>(
+    public func dependency<V>(
         _ keyPath: WritableKeyPath<DependencyValues, V>,
         _ value: V
     ) -> some View {
@@ -35,7 +35,7 @@ public extension View {
 private struct DependenciesViewModifier<V>: ViewModifier {
     let keyPath: WritableKeyPath<DependencyValues, V>
     let value: V
-    
+
     func body(content: Content) -> some View {
         content
             .transformEnvironment(\.dependencies) { dependencies in

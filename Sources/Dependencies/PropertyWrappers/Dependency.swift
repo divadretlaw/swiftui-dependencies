@@ -15,9 +15,9 @@ import SwiftUI
 /// ``DependencyValues`` key path in the property declaration.
 @propertyWrapper public struct Dependency<Value>: DynamicProperty {
     @Environment(\.dependencies) private var dependencies
-    
+
     private let keyPath: KeyPath<DependencyValues, Value>
-    
+
     /// Creates an depdendency property to read the specified key path.
     ///
     /// Don’t call this initializer directly. Instead, declare a property
@@ -42,7 +42,7 @@ import SwiftUI
     public init(_ keyPath: KeyPath<DependencyValues, Value>) {
         self.keyPath = keyPath
     }
-    
+
     /// The current value of the dependency property.
     ///
     /// The wrapped value property provides primary access to the value's data.

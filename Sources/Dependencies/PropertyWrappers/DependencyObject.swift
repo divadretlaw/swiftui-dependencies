@@ -15,10 +15,10 @@ import Combine
 @propertyWrapper
 public struct DependencyObject<ObjectType>: DynamicProperty where ObjectType: ObservableDependencyObject {
     @Environment(\.dependencies) private var dependencies
-    
+
     @StateObject private var coordinator = Coordinator()
     private let build: ((_ dependencies: DependencyValues) -> ObjectType)?
-    
+
     /// Creates an observed object without an initial value.
     ///
     /// Don't call this initializer directly. Instead, declare
@@ -26,33 +26,34 @@ public struct DependencyObject<ObjectType>: DynamicProperty where ObjectType: Ob
     public init() {
         self.build = nil
     }
-    
+
     /// Creates a new ``DependencyObject`` with a closure that initializes an observed object from dependency values.
-    /// 
+    ///
     /// - Parameter build: Callback that initializes the observed object
     public init(_ build: @escaping (_ dependencies: DependencyValues) -> ObjectType) {
         self.build = build
     }
-    
+
     private final class Coordinator: ObservableObject {
+        // swiftlint:disable:next nesting
         typealias ObjectWillChangePublisher = PassthroughSubject<ObjectType.ObjectWillChangePublisher.Output, Never>
-        
+
         private(set) var wrappedValue: ObjectType?
-        
+
         let objectWillChange = ObjectWillChangePublisher()
-        
+
         private var cancellable: AnyCancellable?
-        
+
         func update(build: () -> ObjectType) {
             guard wrappedValue == nil else { return }
-            
+
             // Disable changes during update
             var isUpdating = true
             defer { isUpdating = false }
-            
+
             let value = build()
             wrappedValue = value
-            
+
             self.cancellable = value.objectWillChange
                 .receive(on: DispatchQueue.main)
                 .sink { [weak self] value in
@@ -61,27 +62,27 @@ public struct DependencyObject<ObjectType>: DynamicProperty where ObjectType: Ob
                 }
         }
     }
-    
+
     // MARK: - @propertyWrapper
-    
+
     /// The underlying value referenced by the dependency object.
     public var wrappedValue: ObjectType {
         coordinator.wrappedValue ?? ObjectType(dependencies: dependencies)
     }
-    
+
     /// A projection of the dependency object that creates bindings to its properties.
     public var projectedValue: Wrapper {
         Wrapper(value: wrappedValue)
     }
-    
+
     /// A wrapper of the underlying observable object that can create bindings to its properties.
     @MainActor @dynamicMemberLookup public struct Wrapper: Sendable {
         private let value: ObjectType
-        
+
         init(value: ObjectType) {
             self.value = value
         }
-        
+
         /// Gets a binding to the value of a specified key path.
         ///
         /// - Parameter keyPath: A key path to a specific  value.
@@ -97,9 +98,9 @@ public struct DependencyObject<ObjectType>: DynamicProperty where ObjectType: Ob
             }
         }
     }
-    
+
     // MARK: - DynamicProperty
-    
+
     public nonisolated func update() {
         MainActor.dispatch {
             if let build {

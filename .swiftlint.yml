@@ -1,5 +1,6 @@
 # By default, SwiftLint uses a set of sensible default rules you can adjust:
 disabled_rules: # rule identifiers turned on by default to exclude from running
+  # - attribute_name_spacing
   # - blanket_disable_command
   # - block_based_kvo
   # - class_delegate_protocol
@@ -54,7 +55,9 @@ disabled_rules: # rule identifiers turned on by default to exclude from running
   # - nsobject_prefer_isequal
   # - opening_brace
   # - operator_whitespace
+  # - optional_data_string_conversion
   # - orphaned_doc_comment
+  # - prefer_type_checking
   # - private_over_fileprivate
   # - private_unit_test
   # - protocol_property_accessors_order
@@ -62,6 +65,7 @@ disabled_rules: # rule identifiers turned on by default to exclude from running
   # - redundant_discardable_let
   # - redundant_objc_attribute
   # - redundant_optional_initialization
+  - redundant_sendable
   # - redundant_set_access_control
   # - redundant_string_enum_value
   # - redundant_void_return
@@ -77,7 +81,7 @@ disabled_rules: # rule identifiers turned on by default to exclude from running
   # - trailing_comma
   # - trailing_newline
   # - trailing_semicolon
-  - trailing_whitespace
+  # - trailing_whitespace
   # - type_body_length
   # - type_name
   # - unavailable_condition
@@ -99,8 +103,8 @@ opt_in_rules: # some rules are turned off by default, so you need to opt-in
   - accessibility_label_for_image
   - accessibility_trait_for_button
   # - anonymous_argument_in_multiline_closure
-  # - anyobject_protocol
   - array_init
+  # - async_without_await
   # - attributes
   # - balanced_xctest_lifecycle
   # - capture_variable
@@ -114,6 +118,7 @@ opt_in_rules: # some rules are turned off by default, so you need to opt-in
   - contains_over_filter_is_empty
   - contains_over_first_not_nil
   - contains_over_range_nil_comparison
+  # - contrasted_opening_brace
   - convenience_type
   - direct_return
   # - discarded_notification_center_observer
@@ -151,7 +156,6 @@ opt_in_rules: # some rules are turned off by default, so you need to opt-in
   - implicit_return
   # - implicitly_unwrapped_optional
   # - indentation_width
-  # - inert_defer
   # - joined_default_parameter
   - last_where
   - legacy_multiple
@@ -169,6 +173,7 @@ opt_in_rules: # some rules are turned off by default, so you need to opt-in
   - multiline_parameters
   - multiline_parameters_brackets
   - nimble_operator
+  # - no_empty_block
   # - no_extension_access_modifier
   - no_grouping_extension
   - no_magic_numbers
@@ -178,12 +183,14 @@ opt_in_rules: # some rules are turned off by default, so you need to opt-in
   # - number_separator
   # - object_literal
   # - one_declaration_per_file
+  # - opaque_over_existential
   - operator_usage_whitespace
   # - optional_enum_case_matching
   - overridden_super_call
   - override_in_extension
   # - pattern_matching_keywords
   - period_spacing
+  # - prefer_key_path
   # - prefer_nimble
   # - prefer_self_in_static_references
   # - prefer_self_type_over_type_of_self
@@ -228,9 +235,9 @@ opt_in_rules: # some rules are turned off by default, so you need to opt-in
   # - unneeded_parentheses_in_closure_argument
   # - unowned_variable_capture
   # - untyped_error_in_catch
-  # - unused_capture_list
   # - unused_declaration
   # - unused_import
+  # - unused_parameter
   - vertical_parameter_alignment_on_call
   # - vertical_whitespace_between_cases
   - vertical_whitespace_closing_braces

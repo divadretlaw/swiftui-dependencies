@@ -12,7 +12,7 @@ public struct DependencyValues: CustomStringConvertible {
     private var defaultValues: PropertyList
     private var previewValues: PropertyList
     private var testingValues: PropertyList
-    
+
     /// Creates a dependency values instance.
     ///
     /// You don't typically create an instance of ``DependencyValues``
@@ -26,7 +26,7 @@ public struct DependencyValues: CustomStringConvertible {
         self.previewValues = [:]
         self.testingValues = [:]
     }
-    
+
     /// Accesses the dependency value associated with a custom key.
     ///
     /// Create custom dependency values by defining a key
@@ -64,7 +64,7 @@ public struct DependencyValues: CustomStringConvertible {
         get { self[key, for: DependencyContext.current] }
         set { self[key, for: DependencyContext.current] = newValue }
     }
-    
+
     private subscript<K>(key: K.Type, for context: DependencyContext) -> K.Value where K: DependencyKey {
         get {
             switch context {
@@ -87,7 +87,7 @@ public struct DependencyValues: CustomStringConvertible {
             }
         }
     }
-    
+
     /// A string that represents the contents of the dependecy values instance.
     public var description: String {
         """
